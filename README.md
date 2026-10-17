@@ -30,33 +30,4 @@ Self-updater is disabled by default if AppImage managers like [am](https://githu
 
 ---
 
-## How this is packaged
-
-Upstream does not publish a tarball or a standalone binary for Linux, only a
-`.deb` built around a Qt5 shell, a bundled `server.js` and a `node` symlink.
-Building the shell from source is not an option here, so the deb is unpacked
-and repackaged:
-
-- **Version tracking** - there is no release feed for the Linux shell, so the
-  deb is taken from the link on the official downloads page, and the version is
-  read back out of the deb's own control file rather than parsed from the URL.
-  If the page ever stops exposing it, the release tags on
-  [stremio-shell](https://github.com/Stremio/stremio-shell) are walked instead.
-- **`libmpv1` → `libmpv2`** - the shell links against `libmpv.so.1`, which no
-  longer exists anywhere, `patchelf --replace-needed` points it at the
-  `libmpv.so.2` Arch ships. The mpv client API used here did not change.
-- **`node`** - the deb ships a symlink to `/usr/bin/node`, which is useless
-  inside an AppImage, so the real node binary is deployed next to `server.js`.
-- **upstream self-updater** - the shell replaces itself with the upstream
-  AppImage when it detects that it runs from `/tmp/.mount_*`, which is exactly
-  where uruntime mounts this AppImage. That path is neutralized and updates go
-  through quick-sharun's self-updater instead.
-- **Qt5 WebEngine** - `qt5-webengine`, `qt5-webchannel` and `qt5-location` are
-  no longer in the Arch repos, and OpenSSL 1.1 is needed for the
-  `OPENSSL_1_1_0` symbols the shell imports, so both come from archlinuxcn.
-
-Only `x86_64` is built, because that is the only architecture upstream ships.
-
----
-
 More at: [AnyLinux-AppImages](https://pkgforge-dev.github.io/Anylinux-AppImages/)
