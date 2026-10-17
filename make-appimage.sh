@@ -3,18 +3,29 @@
 set -eu
 
 ARCH=$(uname -m)
-VERSION=$(pacman -Q PACKAGENAME | awk '{print $2; exit}') # example command to get version of application here
-export ARCH VERSION
+export ARCH
 export OUTPATH=./dist
-export ADD_HOOKS="self-updater.hook"
+export ADD_HOOKS="self-updater.hook:fix-namespaces.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export ICON=PATH_OR_URL_TO_ICON
-export DESKTOP=PATH_OR_URL_TO_DESKTOP_ENTRY
+export ICON=./AppDir/share/icons/hicolor/128x128/apps/smartcode-stremio.png
+export DESKTOP=./AppDir/smartcode-stremio.desktop
+export MAIN_BIN=stremio
+export DEPLOY_QT=1
+export QT_DIR=qt
+export DEPLOY_QT_WEB_ENGINE=1
+export DEPLOY_QML=1
+export DEPLOY_PIPEWIRE=1
 
-# Deploy dependencies
-quick-sharun /PATH/TO/BINARY_AND_LIBRARIES_HERE
-
-# Additional changes can be done in between here
+# the shell never links WebEngine directly, it imports it from QML, so the
+# helper has to be named explicitly for its libraries to be collected
+# node and ffmpeg are started by the shell from the directory of the node
+# binary, which is bin/ in the AppDir
+quick-sharun \
+	./AppDir/bin/stremio                  \
+	/usr/bin/node                         \
+	/usr/bin/ffmpeg                       \
+	/usr/bin/ffprobe                      \
+	/usr/lib/qt/libexec/QtWebEngineProcess
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
