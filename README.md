@@ -2,9 +2,9 @@
 
 # Stremio AppImage 🐧
 
-[![GitHub Downloads](https://img.shields.io/github/downloads/nubesurrealista/Stremio-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/nubesurrealista/Stremio-AppImage/releases/latest)
-[![CI Build Status](https://img.shields.io/github/actions/workflow/status/nubesurrealista/Stremio-AppImage/appimage.yml?label=CI%20Build)](https://github.com/nubesurrealista/Stremio-AppImage/actions/workflows/appimage.yml)
-[![Latest Stable Release](https://img.shields.io/github/v/release/nubesurrealista/Stremio-AppImage)](https://github.com/nubesurrealista/Stremio-AppImage/releases/latest)
+[![GitHub Downloads](https://img.shields.io/github/downloads/pkgforge-dev/Stremio-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/pkgforge-dev/Stremio-AppImage/releases/latest)
+[![CI Build Status](https://img.shields.io/github/actions/workflow/status/pkgforge-dev/Stremio-AppImage/appimage.yml?label=CI%20Build)](https://github.com/pkgforge-dev/Stremio-AppImage/actions/workflows/appimage.yml)
+[![Latest Stable Release](https://img.shields.io/github/v/release/pkgforge-dev/Stremio-AppImage)](https://github.com/pkgforge-dev/Stremio-AppImage/releases/latest)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Stremio/stremio-web/development/assets/images/icon_512x512.png" width="128" />
@@ -12,7 +12,7 @@
 
 | Latest Stable Release | Upstream URL |
 | :---: | :---: |
-| [Click here](https://github.com/nubesurrealista/Stremio-AppImage/releases/latest) | [Click here](https://www.stremio.com/) |
+| [Click here](https://github.com/pkgforge-dev/Stremio-AppImage/releases/latest) | [Click here](https://www.stremio.com/) |
 
 </div>
 
